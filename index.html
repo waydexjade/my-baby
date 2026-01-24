@@ -132,7 +132,7 @@
     </div>
 
     <div class="container" id="mainCard">
-        <h1>Will you be my Valentine? 🌹</h1>
+        <h1>Would you do me the honour of being my Valentine? 🌹</h1>
         <div class="buttons">
             <button id="yesBtn">YES!</button>
             <button id="noBtn">No</button>
@@ -141,9 +141,9 @@
 
     <div class="container" id="successMessage">
         <h1>My Baby! ❤️</h1>
-        <p>You've made me the happiest person alive.</p>
+        <p>You've made me the happiest and luckiest person.</p>
         <div class="counter-box">
-            <span style="font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">TOGETHER FOR</span>
+            <span style="font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">OUR FOREVER STARTED</span>
             <span class="days-number" id="dayCounter">0 DAYS</span>
             <div id="timeDetail">0h 0m 0s</div>
         </div>
@@ -158,14 +158,14 @@
     <div class="container" id="gift1">
         <h2 style="color: #ff4d6d;">Roses for You 🌹</h2>
         <img src="red roses2.jpg" style="width:100%; border-radius:15px;">
-        <div class="letter-text">Just like these roses, my love for you grows more beautiful every single day.</div>
+        <div class="letter-text">You are as beautiful and delicate as a bouquet of roses. You brighten my day, everyday with your glaring radiance. And while flowers may wither, my love for you is forever.</div>
         <button class="back-btn" onclick="showSection('successMessage')">Back</button>
     </div>
 
     <div class="container" id="gift2">
         <h2 style="color: #ff4d6d;">Sweet Hugs ✨</h2>
         <img src="teddy and choc2.jpg" style="width:100%; border-radius:15px;">
-        <div class="letter-text">I wanted to give you something as sweet and soft as you. A reminder that I'm always there to hold you.</div>
+        <div class="letter-text">You sweeter than all the chocolates in the world, and deserve more hugs and love than a teddy bear. I only wish to give you cuddles and treat you like the princess you are.</div>
         <button class="back-btn" onclick="showSection('successMessage')">Back</button>
     </div>
 
@@ -175,24 +175,24 @@
         <div class="scrapbook-grid">
             <div class="polaroid">
                 <img src="IMG-20251208-WA0018~2.jpg">
-                <span class="polaroid-caption">Where it started</span>
-            </div>
-            <div class="polaroid">
-                <img src="new2.1.JPG">
-                <span class="polaroid-caption">My favorite day</span>
-            </div>
-            <div class="polaroid">
-                <img src="IMG-20251212-WA0002.jpg">
                 <span class="polaroid-caption">Just us ❤️</span>
             </div>
             <div class="polaroid">
-                <img src="new1.JPG">
+                <img src="new2.1.JPG">
+                <span class="polaroid-caption">Cute moment</span>
+            </div>
+            <div class="polaroid">
+                <img src="IMG-20251212-WA0002.jpg">
                 <span class="polaroid-caption">Forever to go</span>
+            </div>
+            <div class="polaroid">
+                <img src="new1.JPG">
+                <span class="polaroid-caption">My favourite ✨</span>
             </div>
         </div>
 
         <div class="letter-text">
-            Every moment with you is a treasure I hold close to my heart.
+            I wish everyday with you can last forever. Your smile, your laughter, the way you look at me and the way I feel when you look at me. Everyday with you will always be precious to me. And I want everyday with you, to be my everyday with you.
         </div>
         <div style="display: flex; justify-content: center; gap: 10px;">
             <button class="back-btn" onclick="showSection('successMessage')">Back</button>
@@ -203,8 +203,8 @@
     <div class="container" id="finalLetter">
         <h2 style="color: #ff4d6d;">For My Love 💌</h2>
         <div class="letter-text">
-            My Dearest,<br><br>
-            Thank you for being the amazing person you are. I promise to love you, cherish you, and make you smile every single day.<br><br>
+            My Baby Girl,,<br><br>
+            I fall in love with you every single day. You are who my heart desires most that it brings me so much joy when we speak about our future life together. You mean so much to me that I can't imagine a life without you now. Our calls, our texts, the games we play and the shows we watch gives me such a sense of happiness that I can't put into words. You smart, funny, kind, caring and the most beautiful girl ever. I'm so lucky to have you in my life. I miss you so much sometimes it hurts. But having you to miss makes the wait so much more worth it. Thank you for being the amazing perso you are. I promise to love you, cherish you and make you smile every single day.<br><br>
             Always and forever Yours. ❤️
         </div>
         <button class="next-gift-btn" style="background: #ff758f;" onclick="showSection('countdownSection')">One last thing... ✨</button>
@@ -212,13 +212,13 @@
 
     <div class="container" id="countdownSection">
         <h2 style="color: #ff4d6d;">Counting Down... ⏳</h2>
-        <p>Until I can finally see you and celebrate our Valentine's Day!</p>
+        <p>Until I can finally see you and make every moment last!</p>
         <div class="counter-box">
             <span style="font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">TIME REMAINING</span>
             <span class="days-number" id="vDayCountdown">00:00:00:00</span>
             <div id="countdownDetail">Days : Hrs : Mins : Secs</div>
         </div>
-        <p style="font-style: italic; color: #ff758f;">I can't wait for our special day. ❤️</p>
+        <p style="font-style: italic; color: #ff758f;">I can't wait for when we together again ❤️</p>
         <button class="back-btn" onclick="showSection('successMessage')">Back to Gifts</button>
     </div>
 
@@ -226,8 +226,8 @@
         // Set your relationship start date (Month is 0-indexed, so 9 = Oct, 10 = Nov)
         const startDate = new Date(2025, 10, 25, 0, 0, 0); 
         
-        // Set the Valentine's Day target (Year, Month (Feb=1), Day, Hour)
-        const targetDate = new Date(2026, 1, 14, 0, 0, 0);
+        // Set the Valentine's Day target (Year, Month (Mar=2), Day, Hour)
+        const targetDate = new Date(2026, 2, 6, 0, 0, 0);
 
         const sections = ['mainCard', 'successMessage', 'gift1', 'gift2', 'gift3', 'finalLetter', 'countdownSection'];
 
@@ -314,6 +314,7 @@
 </body>
 
 </html>
+
 
 
 
