@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff0f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+            z-index: 100;
+            text-align: center;
+            display: none;
+            max-width: 420px;
+            width: 90%;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: slideUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* --- Envelope --- */
+        .envelope-wrapper { cursor: pointer; text-align: center; z-index: 200; position: relative; }
+        .envelope {
+            position: relative; width: 200px; height: 150px; background: #ff4d6d;
+            border-radius: 0 0 10px 10px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 20px;
+        }
+        .envelope::before {
+            content: ""; position: absolute; top: -75px; left: 0;
+            border-left: 100px solid transparent; border-right: 100px solid transparent; border-bottom: 75px solid #ff4d6d;
+        }
+        .heart-icon { font-size: 50px; color: white; animation: pulse 1.5s infinite; }
+
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        /* --- Polaroid Scrapbook Styles --- */
+        .scrapbook-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 15px 5px;
+            margin-top: 10px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 10px 10px 25px 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .polaroid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border: 1px solid #f0f0f0;
+            display: block;
+        }
+
+        .polaroid-caption {
+            font-family: 'Brush Script MT', cursive, sans-serif;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            color: #555;
+            display: block;
+        }
+
+        .polaroid:nth-child(odd) { transform: rotate(-3deg); }
+        .polaroid:nth-child(even) { transform: rotate(3deg); }
+        .polaroid:hover { transform: scale(1.08) rotate(0deg); z-index: 10; }
+
+        /* --- UI Elements --- */
+        .buttons { display: flex; gap: 20px; justify-content: center; align-items: center; min-height: 160px; }
+        #yesBtn { background: #ff4d6d; color: white; padding: 15px 35px; border: none; border-radius: 50px; cursor: pointer; font-size: 1.2rem; }
+        #noBtn { background: #8a8a8a; color: white; padding: 10px 20px; border: none; border-radius: 50px; cursor: pointer; transition: all 0.2s ease; }
+
+        .counter-box { background: #fff5f7; padding: 15px; border-radius: 20px; margin: 15px 0; border: 2px dashed #ffb3c1; }
+        .days-number { display: block; font-size: 2rem; font-weight: bold; color: #ff4d6d; }
+        #timeDetail, #countdownDetail { font-size: 0.9rem; color: #ff758f; margin-top: 5px; }
+
+        .gift-container { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
+        .gift-box {
+            width: 75px; height: 75px; background: #ff4d6d; position: relative; cursor: pointer;
+            border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .gift-box::before { content: ''; position: absolute; width: 12px; height: 100%; background: #ffb3c1; }
+        .gift-box::after { content: ''; position: absolute; width: 100%; height: 12px; background: #ffb3c1; }
+
+        .letter-text { 
+            text-align: left; 
+            font-size: 0.95rem; 
+            line-height: 1.6; 
+            color: #444; 
+            background: #fffafa; 
+            padding: 20px; 
+            border-radius: 15px; 
+            margin-top: 15px; 
+            border-left: 5px solid #ff4d6d;
+        }
+
+        .back-btn { margin-top: 20px; background: #ff758f; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; }
+        .next-gift-btn { margin-top: 20px; background: #ff4d6d; color: white; border: none; padding: 10px 25px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+
+        .heart { position: absolute; animation: float 5s linear infinite; z-index: 1; pointer-events: none; }
+        @keyframes float { 0% { transform: translateY(100vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" src="YOUR_SONG_URL_HERE" loop></audio>
+
+    <div class="envelope-wrapper" id="envelopeWrapper">
+        <div class="envelope"><div class="heart-icon">❤️</div></div>
+        <div style="color: #ff4d6d; font-weight: bold;">Click to open your letter</div>
+    </div>
+
+    <div class="container" id="mainCard">
+        <h1>Will you be my Valentine? 🌹</h1>
+        <div class="buttons">
+            <button id="yesBtn">YES!</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <div class="container" id="successMessage">
+        <h1>My Baby! ❤️</h1>
+        <p>You've made me the happiest person alive.</p>
+        <div class="counter-box">
+            <span style="font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">TOGETHER FOR</span>
+            <span class="days-number" id="dayCounter">0 DAYS</span>
+            <div id="timeDetail">0h 0m 0s</div>
+        </div>
+        <p style="font-weight: bold; color: #ff4d6d;">Open your gifts, my love</p>
+        <div class="gift-container">
+            <div class="gift-box" onclick="showSection('gift1')">🎁</div>
+            <div class="gift-box" onclick="showSection('gift2')">🎁</div>
+            <div class="gift-box" onclick="showSection('gift3')">🎁</div>
+        </div>
+    </div>
+
+    <div class="container" id="gift1">
+        <h2 style="color: #ff4d6d;">Roses for You 🌹</h2>
+        <img src="https://assets.giftalove.com/resources/common/giftimages/productimage2/15-red-roses-bouquet.jpg" style="width:100%; border-radius:15px;">
+        <div class="letter-text">Just like these roses, my love for you grows more beautiful every single day.</div>
+        <button class="back-btn" onclick="showSection('successMessage')">Back</button>
+    </div>
+
+    <div class="container" id="gift2">
+        <h2 style="color: #ff4d6d;">Sweet Hugs ✨</h2>
+        <img src="https://static.vecteezy.com/system/resources/previews/056/028/059/large_2x/teddy-bear-and-box-of-chocolates-lying-on-bed-covered-with-rose-petals-photo.jpg" style="width:100%; border-radius:15px;">
+        <div class="letter-text">I wanted to give you something as sweet and soft as you. A reminder that I'm always there to hold you.</div>
+        <button class="back-btn" onclick="showSection('successMessage')">Back</button>
+    </div>
+
+    <div class="container" id="gift3">
+        <h2 style="color: #ff4d6d;">Our Journey 📸</h2>
+        
+        <div class="scrapbook-grid">
+            <div class="polaroid">
+                <img src="https://images.unsplash.com/photo-1516589174184-c68526514ec0?q=80&w=200">
+                <span class="polaroid-caption">Where it started</span>
+            </div>
+            <div class="polaroid">
+                <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=200">
+                <span class="polaroid-caption">My favorite day</span>
+            </div>
+            <div class="polaroid">
+                <img src="https://images.unsplash.com/photo-1522673607200-164883eecd4c?q=80&w=200">
+                <span class="polaroid-caption">Just us ❤️</span>
+            </div>
+            <div class="polaroid">
+                <img src="https://images.unsplash.com/photo-1494972308805-463bc619d34e?q=80&w=200">
+                <span class="polaroid-caption">Forever to go</span>
+            </div>
+        </div>
+
+        <div class="letter-text">
+            Every moment with you is a treasure I hold close to my heart.
+        </div>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+            <button class="back-btn" onclick="showSection('successMessage')">Back</button>
+            <button class="next-gift-btn" onclick="showSection('finalLetter')">Last Gift 💝</button>
+        </div>
+    </div>
+
+    <div class="container" id="finalLetter">
+        <h2 style="color: #ff4d6d;">For My Love 💌</h2>
+        <div class="letter-text">
+            My Dearest,<br><br>
+            Thank you for being the amazing person you are. I promise to love you, cherish you, and make you smile every single day.<br><br>
+            Always and forever Yours. ❤️
+        </div>
+        <button class="next-gift-btn" style="background: #ff758f;" onclick="showSection('countdownSection')">One last thing... ✨</button>
+    </div>
+
+    <div class="container" id="countdownSection">
+        <h2 style="color: #ff4d6d;">Counting Down... ⏳</h2>
+        <p>Until I can finally see you and celebrate our Valentine's Day!</p>
+        <div class="counter-box">
+            <span style="font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">TIME REMAINING</span>
+            <span class="days-number" id="vDayCountdown">00:00:00:00</span>
+            <div id="countdownDetail">Days : Hrs : Mins : Secs</div>
+        </div>
+        <p style="font-style: italic; color: #ff758f;">I can't wait for our special day. ❤️</p>
+        <button class="back-btn" onclick="showSection('successMessage')">Back to Gifts</button>
+    </div>
+
+    <script>
+        // Set your relationship start date (Month is 0-indexed, so 9 = Oct, 10 = Nov)
+        const startDate = new Date(2025, 10, 25, 0, 0, 0); 
+        
+        // Set the Valentine's Day target (Year, Month (Feb=1), Day, Hour)
+        const targetDate = new Date(2026, 1, 14, 0, 0, 0);
+
+        const sections = ['mainCard', 'successMessage', 'gift1', 'gift2', 'gift3', 'finalLetter', 'countdownSection'];
+
+        function showSection(id) {
+            sections.forEach(s => document.getElementById(s).style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+        }
+
+        document.getElementById('envelopeWrapper').onclick = () => {
+            document.getElementById('envelopeWrapper').style.display = 'none';
+            showSection('mainCard');
+        };
+
+        document.getElementById('yesBtn').onclick = () => {
+            // Play Music
+            const music = document.getElementById('bgMusic');
+            music.volume = 0.6; // Set volume to 60%
+            music.play().catch(e => console.log("Audio play prevented"));
+
+            showSection('successMessage');
+            setInterval(createHeart, 300);
+        };
+
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        
+        let yesScale = 1; 
+        let noScale = 1;
+
+        const moveBtn = () => {
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = Math.random() * 80 + 'vw';
+            noBtn.style.top = Math.random() * 80 + 'vh';
+            
+            yesScale += 0.15; 
+            yesBtn.style.transform = `scale(${yesScale})`;
+            
+            noScale -= 0.1;
+            if (noScale < 0.3) noScale = 0.3; 
+            noBtn.style.transform = `scale(${noScale})`;
+
+            yesBtn.style.zIndex = "999";
+        };
+
+        noBtn.onmouseover = moveBtn;
+        noBtn.onclick = moveBtn;
+        noBtn.ontouchstart = moveBtn;
+
+        function updateTimers() {
+            const now = new Date();
+            
+            const diff = now - startDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const mins = Math.floor((diff / 1000 / 60) % 60);
+            const secs = Math.floor((diff / 1000) % 60);
+            document.getElementById('dayCounter').innerText = `${days} DAYS`;
+            document.getElementById('timeDetail').innerText = `${hours}h ${mins}m ${secs}s`;
+
+            const tDiff = targetDate - now;
+            if (tDiff > 0) {
+                const d = Math.floor(tDiff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((tDiff / (1000 * 60 * 60)) % 24);
+                const m = Math.floor((tDiff / 1000 / 60) % 60);
+                const s = Math.floor((tDiff / 1000) % 60);
+                document.getElementById('vDayCountdown').innerText = 
+                    `${d.toString().padStart(2, '0')}:${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            } else {
+                document.getElementById('vDayCountdown').innerText = "HAPPY VALENTINE'S!";
+            }
+        }
+        setInterval(updateTimers, 1000);
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+    </script>
+</body>
+</html>
