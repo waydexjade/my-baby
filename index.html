@@ -227,7 +227,7 @@
         const startDate = new Date(2025, 10, 25, 0, 0, 0); 
         
         // Set the Valentine's Day target (Year, Month (Mar=2), Day, Hour)
-        const targetDate = new Date(2026, 2, 6, 18, 0, 0);
+        const targetDate = new Date(2026, 2, 10, 18, 0, 0);
 
         const sections = ['mainCard', 'successMessage', 'gift1', 'gift2', 'gift3', 'finalLetter', 'countdownSection'];
 
@@ -296,7 +296,7 @@
                 document.getElementById('vDayCountdown').innerText = 
                     `${d.toString().padStart(2, '0')}:${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
             } else {
-                document.getElementById('vDayCountdown').innerText = "HAPPY VALENTINE'S!";
+                document.getElementById('vDayCountdown').innerText = "WE MADE IT!";
             }
         }
         setInterval(updateTimers, 1000);
