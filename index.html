@@ -141,7 +141,7 @@
 
     <div class="container" id="successMessage">
         <h1>My Baby! ❤️</h1>
-        <p>You've made me the happiest and luckiest person.</p>
+        <p>You've made me the happiest person alive.</p>
         <div class="counter-box">
             <span style="font-size: 0.8rem; font-weight: bold; letter-spacing: 1px;">TOGETHER FOR</span>
             <span class="days-number" id="dayCounter">0 DAYS</span>
@@ -203,11 +203,11 @@
     <div class="container" id="finalLetter">
         <h2 style="color: #ff4d6d;">For My Love 💌</h2>
         <div class="letter-text">
-            My Baby Girl,<br><br>
+             My Baby Girl,<br><br>
             I fall in love with you every single day. You are who my heart desires most that it brings me so much joy when we speak about our future life together. You mean so much to me that I can't imagine a life without you now. Our calls, our texts, the games we play and the shows we watch gives me such a sense of happiness that I can't put into words. You smart, funny, kind, caring and the most beautiful girl ever. I'm so lucky to have you in my life. I miss you so much that sometimes it hurts. But having you to miss makes the wait so much more worth it. Thank you for being the amazing person you are. I promise to love you, cherish you and make you smile every single day.<br><br>
             Always and forever Yours. ❤️
         </div>
-        <button class="next-gift-btn" style="background: #ff758f;" onclick="showSection('countdownSection')">One last thing... ✨</button>
+        <button class="next-gift-btn" style="background: #ff758f;" onclick="showPopup()">One last thing... ✨</button>
     </div>
 
     <div class="container" id="countdownSection">
@@ -218,15 +218,26 @@
             <span class="days-number" id="vDayCountdown">00:00:00:00</span>
             <div id="countdownDetail">Days : Hrs : Mins : Secs</div>
         </div>
-        <p style="font-style: italic; color: #ff758f;">I can't wait for when we together again ❤️</p>
+        <p style="font-style: italic; color: #ff758f;">I can't wait for our special day. ❤️</p>
         <button class="back-btn" onclick="showSection('successMessage')">Back to Gifts</button>
+    </div>
+
+    <div id="messagePopup" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1000; align-items:center; justify-content:center; backdrop-filter: blur(5px);">
+        <div class="container" style="display:block; position:relative; border: 3px solid #ff4d6d;">
+            <h2 style="color: #ff4d6d;">For you... 📝</h2>
+            <p style="line-height: 1.6; color: #444; font-size: 1.1rem;">
+                You are the most beautiful part of my life. Someone that has my heart, my soul and is my everything. No matter the distance between us right now. No matter the time before I get to see you. My love for you only grows stronger by the second. I can't wait to see you soon my baby!
+            </p>
+            <button class="next-gift-btn" onclick="closePopupAndProceed()">Continue to Countdown ❤️</button>
+        </div>
     </div>
 
     <script>
         // Set your relationship start date (Month is 0-indexed, so 9 = Oct, 10 = Nov)
         const startDate = new Date(2025, 10, 25, 0, 0, 0); 
         
-        // Set the Valentine's Day target (Year, Month (Mar=2), Day, Hour)
+        // Set the Valentine's Day target (Year, Month (Feb=1), Day, Hour)
+        // Changed to 2027 so you can see a countdown!
         const targetDate = new Date(2026, 6, 10, 18, 0, 0);
 
         const sections = ['mainCard', 'successMessage', 'gift1', 'gift2', 'gift3', 'finalLetter', 'countdownSection'];
@@ -310,15 +321,16 @@
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 5000);
         }
+
+        // NEW JAVASCRIPT FUNCTIONS
+        function showPopup() {
+            document.getElementById('messagePopup').style.display = 'flex';
+        }
+
+        function closePopupAndProceed() {
+            document.getElementById('messagePopup').style.display = 'none';
+            showSection('countdownSection');
+        }
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
